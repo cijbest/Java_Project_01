@@ -1,6 +1,7 @@
 # Java Projects for Study
 
-### Number Guess Game UML
+### Number Guess Game UML 
+---
 ![GuessUML](https://user-images.githubusercontent.com/24764210/88476109-ac2ae300-cf70-11ea-91e8-83b9554b503d.png)
 
 
