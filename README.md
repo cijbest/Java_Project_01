@@ -1,10 +1,10 @@
 # Java Projects for Study
 
-### Number Guess Game UML
+## Number Guess Game UML
 ![GuessUML](https://user-images.githubusercontent.com/24764210/88476109-ac2ae300-cf70-11ea-91e8-83b9554b503d.png)
 
 
-### Lotto Game UML
+## Lotto Game UML
 ![LottoUML](https://user-images.githubusercontent.com/24764210/88476117-c664c100-cf70-11ea-82f8-a59367c7d615.png)
 
 
