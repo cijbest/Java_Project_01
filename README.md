@@ -33,3 +33,10 @@
 ### Db UML
 ---
 ![W0724UML](https://user-images.githubusercontent.com/24764210/88476240-e5b01e00-cf71-11ea-98b6-6393fdfeed4d.png)
+
+
+### DbConnect UML
+---
+![DBConnectUML](https://user-images.githubusercontent.com/24764210/88513647-a215ec80-d023-11ea-9a3c-5d470610bf3c.png)
+
+
