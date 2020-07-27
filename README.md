@@ -35,6 +35,6 @@
 ![W0724UML](https://user-images.githubusercontent.com/24764210/88476240-e5b01e00-cf71-11ea-98b6-6393fdfeed4d.png)
 
 
-### DbConnect UML
+### DbConnection UML
 ---
 ![DBConnectUML](https://user-images.githubusercontent.com/24764210/88513743-d4bfe500-d023-11ea-8375-4818cc9904a8.png)
