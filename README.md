@@ -51,7 +51,7 @@
 
 ### GradeManagementProgram
 ---
-![1](https://user-images.githubusercontent.com/24764210/88772957-6febc280-d1bc-11ea-93cb-0756c9e34784.png)
-![2](https://user-images.githubusercontent.com/24764210/88773078-a3c6e800-d1bc-11ea-9659-6d819d610fed.PNG)
-![3](https://user-images.githubusercontent.com/24764210/88773104-acb7b980-d1bc-11ea-9fc1-4df53ed4205a.PNG)
+![1](https://user-images.githubusercontent.com/24764210/88772957-6febc280-d1bc-11ea-93cb-0756c9e34784.png)  
+![2](https://user-images.githubusercontent.com/24764210/88773078-a3c6e800-d1bc-11ea-9659-6d819d610fed.PNG)  
+![3](https://user-images.githubusercontent.com/24764210/88773104-acb7b980-d1bc-11ea-9fc1-4df53ed4205a.PNG)  
 ![4](https://user-images.githubusercontent.com/24764210/88773130-b50ff480-d1bc-11ea-8668-a963fbbc0f56.PNG)
