@@ -37,5 +37,14 @@
 
 ### DbConnection UML
 ---
-![DBConnectUML](https://user-images.githubusercontent.com/24764210/88513743-d4bfe500-d023-11ea-8375-4818cc9904a8.png)  
-> ##### Item -> Product
+![DBConnect2UML](https://user-images.githubusercontent.com/24764210/88767696-f7cdce80-d1b4-11ea-9cda-b90a7240ba28.png)
+
+
+### UiTest
+---
+##### Login.java
+![Login UI 화면](https://user-images.githubusercontent.com/24764210/88767491-ab828e80-d1b4-11ea-8c0d-c7a4701614df.PNG)
+
+##### App.java
+![UI 화면](https://user-images.githubusercontent.com/24764210/88767312-6cecd400-d1b4-11ea-97cc-1466347d9087.PNG)
+
