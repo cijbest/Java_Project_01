@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<meta name="viewport" 
+          content="width=device-width, height=device-height, 
+                     minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+<title>Insert title here</title>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<style>   
+   #main {
+      position : relative;
+      width : 750px;   
+      margin: 0 auto;
+   }
+   h1, h5 {
+      display : inline;
+   }
+   
+   #id {
+      position : relative;
+      weight: 50px;
+   }
+   
+   #menu {
+      position : relative;
+      height : 22px;
+      margin-top : 15px;
+   }
+   
+   #weathers{
+      position : absolute;
+      display : inline;      
+      right : 0;
+      bottom : 0;
+   }
+   
+   #weather {
+      height : 25px;
+   }   
+   
+   #main a {
+      text-decoration: none;
+      color:black;
+      text-align: center;   
+      display:block;      
+      border:1px solid black;
+   }
+   
+   #graphMenu > a {
+      display:block;      
+      border:2px solid black;
+      width:125px;
+      height:20px;      
+      float:left;
+      border-radius: 10px 10px 0 0;            
+   }
+   
+   #searchMenu {
+      position : absolute;
+      right : 0;
+   }
+   
+   #searchMenu > a{
+      display:block;      
+      border:2px solid black;
+      width:125px;
+      height:20px;   
+      border-radius: 5px;   
+   }
+   
+   #searchMenu > input{
+      display:block;
+      text-decoration: none;
+      border:1px solid black;
+      width:150px;
+      height:20px;      
+   }    
+   
+   #searchMenu > input, #searchMenu > a {
+      float: left;
+   }
+   
+   #searchMenu > a > img {
+      height: 20px;
+   }
+   
+   #outline{
+      border:2px solid black;      
+   }
+   
+   #container{   
+      margin-top : 15px;      
+      width: 746px;      
+   }
+   
+   #container a {
+      width: 746px;      
+   }
+   
+   #container a:hover {
+      width: 746px;
+      color: gray;
+      font-weight : bold;
+      font-size : 110%;
+   }
+   
+   #view {
+      overflow: auto;
+   }
+   
+   #out {
+      position : absolute;
+      display: block;
+      right: 0;
+   }
+   
+</style>
+<script>
+   function chart1(datas){
+	   console.log(datas);
+      Highcharts.chart('container', {
+   
+          title: {
+              text: '매장의 월별 매출, 2020년'
+          },
+   
+          subtitle: {
+              text: 'Source: pos system'
+          },
+   
+          yAxis: {
+              title: {
+                  text: '매출액 (천원)'
+              }
+          },
+   
+          xAxis: {
+              accessibility: {
+                  rangeDescription: 'Range: 1 to 12'
+              }
+          },
+   
+          legend: {
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'middle'
+          },
+   
+          plotOptions: {
+              series: {
+                  label: {
+                      connectorAllowed: false
+                  },
+                  pointStart: 1
+              }
+          },
+          series: [{
+                name: datas[0].name,
+                 data: datas[0].sum.split(',').map(Number)
+             }, {
+                name: datas[1].name,
+                 data: datas[1].sum.split(',').map(Number)
+             }, {
+                name: datas[2].name,
+                 data: datas[2].sum.split(',').map(Number)
+             }, {
+                name: datas[3].name,
+                 data: datas[3].sum.split(',').map(Number)
+             }, {
+                name: datas[4].name,
+                 data: datas[4].sum.split(',').map(Number)
+           },{
+               name: datas[5].name,
+               data: datas[5].sum.split(',').map(Number)
+         }],
+
+   
+          responsive: {
+              rules: [{
+                  condition: {
+                      maxWidth: 500
+                  },
+                  chartOptions: {
+                      legend: {
+                          layout: 'horizontal',
+                          align: 'center',
+                          verticalAlign: 'bottom'
+                      }
+                  }
+              }]
+          }
+   
+      });
+   };
+   
+   
+   function chart2(datas){Highcharts.chart('container', {
+       chart: {
+           plotBackgroundColor: null,
+           plotBorderWidth: null,
+           plotShadow: false,
+           type: 'pie'
+       },
+       title: {
+           text: '품목별 매출 비율, 2020.08'
+       },
+       tooltip: {
+           pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+       },
+       accessibility: {
+           point: {
+               valueSuffix: '%'
+           }
+       },
+       plotOptions: {
+           pie: {
+               allowPointSelect: true,
+               cursor: 'pointer',
+               dataLabels: {
+                   enabled: false
+               },
+               showInLegend: true
+           }
+       },
+       series: datas
+       
+   });
+   };
+   
+   function getData2(d){
+
+          $.ajax({
+            url:'getdata3',
+            async:false,
+            data:{cmd:d},
+            success:function(result){
+               datas = result;
+               console.log(result);
+               chart2(datas);
+               console.log(datas);
+            },
+            error:function(){
+               alert('Error....');
+            }
+         });       
+      chart2(datas);
+      console.log(datas);
+   };
+   
+   var result_data = [];
+   
+   
+   function getData3(){
+      //ajax
+        $.ajax({
+        url:'getdata4',
+        success:function(result){
+        	result_data = result;
+           chart1(result); //main chart
+           
+        },
+        error:function(){
+           alert('Error.....');
+        }
+     });      
+
+  };
+
+   function getSearchData(){
+      var urlstr = 'https://dapi.kakao.com/v2/search/web';
+      var search = $('input[name="search"]').val();
+      
+      $.ajax({
+         method:'GET',
+         url:urlstr,
+         headers:{'Authorization' : 'KakaoAK 키를 입력하세요'},
+         data:{'query':search},         
+         success:function(data){
+            display(data);            
+         },
+         error:function(){
+            alert('검색어를 확인하세요');
+            
+         }
+      });
+      
+   };
+   
+   function display(data){   
+      $(data.documents).each(function(index, d){
+         var result = '';
+         result += '<a href="'+ d.url +'">' + d.title + '</a><br>';
+         result += '<p>' + d.contents + '</p><br>';
+         $('#container').append(result);
+      });      
+   }
+   
+   function getVideoData(){
+      var urlstr = 'https://dapi.kakao.com/v2/search/vclip';
+      var search = $('input[name="search"]').val();
+      
+      $.ajax({
+         method:'GET',
+         url:urlstr,
+         headers:{'Authorization' : 'KakaoAK 키를 입력하세요'},
+         data:{'query':search},         
+         success:function(data){
+            play(data);            
+         },
+         error:function(){
+            alert('검색어를 확인하세요');
+         }
+      });
+      
+   };
+   
+   function play(data){         
+      $(data.documents).each(function(index, d){
+         var result = '';
+         result += '<a id="view" href="'+ d.url +'">' + d.title + '</a><br>';
+         result += '<embed src="'+ d.thumbnail +'" width="200px" height="100px">';
+         //result += '<embed src="'+ d.url +'" width="300px" height="300px">';
+         $('#container').append(result);
+      });      
+   }
+   
+   function weatherDisplay(data){
+      $('h1 > span').empty(); //span 청소         
+      var obj = {};
+      var result = [];
+      $(data.response.body.items.item).each(function(index, d){ //데이터 출력      
+         obj ={};
+         obj.category = d.category;
+         obj.fcstValue = d.fcstValue;         
+         result.push(obj);         
+      });      
+      $('span:eq(0)').html('<h5>온도: ' + result[6].fcstValue +'도</h5>');
+      $('span:eq(1)').html('<h5>습도: ' + result[3].fcstValue +'%</h5>');
+      $('span:eq(2)').html('<h5>강수확률: ' + result[0].fcstValue +'%</h5>');
+      
+      var img = '';  //사진 바꾸기
+      if (Number(result[1].fcstValue) == 0){
+         if (Number(result[5].fcstValue) == 1){
+            img = '/img/sky1.jpg';
+         } else if (Number(result[4].fcstValue) == 3){
+            img = 'sky3.jpg';
+         } else if (Number(result[4].fcstValue) == 4){
+            img = 'sky4.jpg';
+         } 
+      } else if (Number(result[1].fcstValue) == 1){
+         img = 'img/pty1.jpg';
+      } else if (Number(result[1].fcstValue) == 2){
+         img = 'pty2.jpg';
+      } else if (Number(result[1].fcstValue) == 3){
+         img = 'pty3.jpg';
+      } else if (Number(result[1].fcstValue) == 4){
+         img = 'pty4.jpg';
+      } else if (Number(result[1].fcstValue) == 7){
+         img = 'pty7.jpg';
+      };      
+      $('span:eq(3)').html('<img id=weather src = '+img+'>');    //사진 삽입
+   }
+
+   
+   function getWeather(){
+      var urlstr = 'weather'; //서버에서 데이터 불러오기
+      $.ajax({
+         url:urlstr,
+      dataType: 'json',
+      success:function(data){         
+         weatherDisplay(data);
+      },
+      errer:function(){
+         alert('error');
+      }   
+      });   
+   };
+   
+   $(document).ready(function(){
+      $('#graph1').css('border-bottom-color','white');
+      getWeather();
+      getData3();
+      setInterval(function(){      //날씨   
+         $('#weathers > span').empty();
+         setTimeout(function(){
+            getWeather();
+         },1000);
+      },5000);      
+      $('#menu a').eq(0).click(function(){
+         $('#graph1').css('border-bottom-color','white');
+         $('#graph2').css('border-bottom-color','black');
+         $('#container').empty();
+         getData3();
+      });
+      $('#menu a').eq(1).click(function(){
+         $('#graph2').css('border-bottom-color','white');
+         $('#graph1').css('border-bottom-color','black');
+         $('#container').empty();
+         getData2();
+      });
+      $('#menu a').eq(2).click(function(){
+         $('#graph2').css('border-bottom-color','black');
+         $('#graph1').css('border-bottom-color','black');
+         $('#container').empty();
+         getSearchData();
+      });
+      $('#menu a').eq(3).click(function(){
+         $('#graph2').css('border-bottom-color','black');
+         $('#graph1').css('border-bottom-color','black');
+         $('#container').empty();
+         getVideoData();
+      });
+   });
+</script>
+</head>
+<body>
+   <div id="main">
+   <div id="id">
+   <h1>관리자페이지</h1><div id="weathers"><span></span>&nbsp;<span></span>&nbsp;<span></span>&nbsp;<span></span></div>
+   </div>   
+   <div id="menu">
+   <div id="graphMenu">
+   <a id="graph1" href="#">종합</a>   
+   <a id="graph2" href="#">품목별 매출</a>    
+   </div>   
+   <div id="searchMenu">
+   <input type="text" name = "search" placeholder = "검색어를 입력하세요." ><a href="#"><img src="img/daum.jpg"></a><a href="#"><img src="img/youtube.jpg"></a>   
+   </div>
+   </div>
+   <div id="outline">
+   <div id="container"></div>
+   </div>
+   </div><br><br>
+   <a id="out" href="shopper.html">사용자화면</a>
+</body>
+</html>
